@@ -45,3 +45,4 @@ jobs:
 
           # فرض الدفع حتى لو لم يكن هناك تغييرات كبيرة
           git push --force origin main
+
