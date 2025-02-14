@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: 📥 Clone Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # استنساخ المستودع بالكامل (تجنب مشاكل shallow clone)
 
       - name: 🔧 Setup Python
         uses: actions/setup-python@v3
@@ -27,8 +29,19 @@ jobs:
         run: |
           git config --global user.email "ahmed15ayman7ayman2002@gmail.com"
           git config --global user.name "ahmed15ayman7"
+          
+          # إزالة مشاكل LFS إذا لم تكن مستخدمة
+          git lfs uninstall || true
+          
+          # إعادة ضبط `origin` لضمان الاتصال الصحيح
           git remote set-url origin https://ahmed-mac:${HF_TOKEN}@huggingface.co/spaces/ahmed15ayman7/video-fake-classifier
+
+          # جلب التحديثات من المستودع لتجنب أي تعارض
+          git pull origin main --rebase
+
+          # إضافة أي تغييرات جديدة
           git add .
           git commit --allow-empty -m "🚀 Force redeploy FastAPI"
-          git push --force
 
+          # فرض الدفع حتى لو لم يكن هناك تغييرات كبيرة
+          git push --force origin main
