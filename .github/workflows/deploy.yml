@@ -29,5 +29,6 @@ jobs:
           git config --global user.name "ahmed15ayman7"
           git remote set-url origin https://ahmed-mac:${HF_TOKEN}@huggingface.co/spaces/ahmed15ayman7/video-fake-classifier
           git add .
-          git commit -m "🚀 Auto-deploy FastAPI update"
-          git push
+          git commit --allow-empty -m "🚀 Force redeploy FastAPI"
+          git push --force
+
