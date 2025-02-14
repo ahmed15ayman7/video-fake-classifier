@@ -30,4 +30,4 @@ jobs:
           git remote set-url origin https://ahmed-mac:${HF_TOKEN}@huggingface.co/spaces/ahmed15ayman7/video-fake-classifier
           git add .
           git commit -m "🚀 Auto-deploy FastAPI update"
-          git push origin main
+          git push
