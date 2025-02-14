@@ -27,7 +27,7 @@ jobs:
         run: |
           git config --global user.email "your-email@example.com"
           git config --global user.name "your-username"
-          git remote set-url origin https://your-hf-username:${HF_TOKEN}@huggingface.co/spaces/your-hf-space
+          git remote set-url origin https://ahmed-mac:${HF_TOKEN}@huggingface.co/spaces/ahmed15ayman7/video-fake-classifier
           git add .
           git commit -m "🚀 Auto-deploy FastAPI update"
           git push origin main
