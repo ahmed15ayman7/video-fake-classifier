@@ -1,0 +1,33 @@
+name: Deploy FastAPI to Hugging Face Spaces
+
+on:
+  push:
+    branches:
+      - main  # تشغيل الـ Action عند التحديث على الفرع الرئيسي
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clone Repository
+        uses: actions/checkout@v3
+
+      - name: 🔧 Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: 📦 Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: 🚀 Deploy to Hugging Face Spaces
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "your-username"
+          git remote set-url origin https://your-hf-username:${HF_TOKEN}@huggingface.co/spaces/your-hf-space
+          git add .
+          git commit -m "🚀 Auto-deploy FastAPI update"
+          git push origin main
